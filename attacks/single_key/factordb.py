@@ -81,7 +81,8 @@ def attack(attack_rsa_obj, publickey, cipher=[]):
                 publickey.q = int(key_q) if key_q.isdigit() else solveforp(key_q)
             except IndexError:
                 return (None, None)
-
+            if (publickey.p == publickey.n == publickey.q):
+                return (None, None)
             priv_key = PrivateKey(
                 p=int(publickey.p),
                 q=int(publickey.q),
